@@ -703,7 +703,7 @@ zoomImage(){ # zoom size -> file_path
     # local file="${dir}.png"
     # local size=`scaleToPercents $s`
     mkdir -p $dir   # Imagemagick can't create directories
-    convert $imageSource $resizeFilter -resize $size $file
+    convert $imOptions $imageSource $resizeFilter -resize $size $file
     echo $file
 }
 
@@ -743,7 +743,7 @@ sliceImage(){ # zoom image
 
     # Slice image to tiles
     # convert $src -crop $wxh -set filename:tile $tilesFormat +repage +adjoin -background none -gravity $gravity $ext $file
-    convert $src -gravity $gravity -crop $wxh -set filename:tile $tilesFormat +repage +adjoin -gravity $gravity $ext $file
+    convert $imOptions $src -gravity $gravity -crop $wxh -set filename:tile $tilesFormat +repage +adjoin -gravity $gravity $ext $file
 }
 
 sliceA(){
@@ -834,7 +834,7 @@ resizeImageH(){ # zoom -> file_path
     local file="${dir}.${resultExt}"
     local size=`zoomPixels $zoom $tileW`
     mkdir -p $dir   # Imagemagick can't create directories
-    convert $imageSource $resizeFilter -resize $size $file
+    convert $imOptions $imageSource $resizeFilter -resize $size $file
     echo $file
 }
 
@@ -844,7 +844,7 @@ resizeImageV(){ # zoom -> file_path
     local file="${dir}.${resultExt}"
     local size=`zoomPixels $zoom $tileH`
     mkdir -p $dir   # Imagemagick can't create directories
-    convert $imageSource $resizeFilter -resize "x${size}" $file
+    convert $imOptions $imageSource $resizeFilter -resize "x${size}" $file
     echo $file
 }
 
